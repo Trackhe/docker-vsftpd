@@ -21,7 +21,7 @@ fi
 mkdir -p "/home/vsftpd/${FTP_USER}"
 chown -R ftp:ftp /home/vsftpd/
 
-echo -e "${FTP_USER}\n${FTP_PASS}" > /etc/vsftpd/virtual_users.txt
+#echo -e "${FTP_USER}\n${FTP_PASS}" > /etc/vsftpd/virtual_users.txt
 /usr/bin/db_load -T -t hash -f /etc/vsftpd/virtual_users.txt /etc/vsftpd/virtual_users.db
 
 # Set passive mode parameters:
@@ -49,15 +49,13 @@ if [ ! $LOG_STDOUT ]; then
 cat << EOB
 	*************************************************
 	*                                               *
-	*    Docker image: fauria/vsftpd                *
-	*    https://github.com/fauria/docker-vsftpd    *
+	*    Docker image: trackhe/docker-vsftpd        *
+	*    https://github.com/Trackhe/docker-vsftpd    *
 	*                                               *
 	*************************************************
 
 	SERVER SETTINGS
 	---------------
-	· FTP User: $FTP_USER
-	· FTP Password: $FTP_PASS
 	· Log file: $LOG_FILE
 	· Redirect vsftpd log to STDOUT: No.
 EOB
