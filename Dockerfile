@@ -17,19 +17,12 @@ RUN apk --update --no-cache add \
 		vsftpd
 
 RUN apk add db-utils
-RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories
-RUN apk add -U shadow
 
-RUN usermod -u ${USER_ID} ftp
-RUN groupmod -g ${GROUP_ID} ftp
-
-ENV FTP_USER **String**
-ENV FTP_PASS **Random**
 ENV PASV_ADDRESS **IPv4**
 ENV PASV_ADDR_RESOLVE NO
 ENV PASV_ENABLE YES
-ENV PASV_MIN_PORT 21100
-ENV PASV_MAX_PORT 21110
+ENV PASV_MIN_PORT 8600
+ENV PASV_MAX_PORT 8700
 ENV XFERLOG_STD_FORMAT NO
 ENV LOG_STDOUT **Boolean**
 ENV FILE_OPEN_MODE 0666
