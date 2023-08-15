@@ -11,9 +11,11 @@ LABEL Description="vsftpd Docker image based on Alpine." \
 
 RUN apk update
 RUN apk upgrade
-RUN apk add vsftpd
-RUN rc-update add vsftpd default
-RUN rc-service vsftpd restart
+RUN apk --update --no-cache add \
+		bash \
+		openssl \
+		vsftpd
+
 RUN apk add db-utils
 RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories
 RUN apk add -U shadow
