@@ -20,13 +20,10 @@ if [ -e "/etc/vsftpd/virtual_users.txt" ]; then
     /usr/bin/db_load -T -t hash -f /etc/vsftpd/virtual_users.txt /etc/vsftpd/virtual_users.db
 fi
 
-
-
 # Set passive mode parameters:
 if [ "$PASV_ADDRESS" = "**IPv4**" ]; then
     export PASV_ADDRESS=$(/sbin/ip route|awk '/default/ { print $3 }')
 fi
-
 
 CONF_FILE="/etc/vsftpd/vsftpd.conf"
 

@@ -135,7 +135,7 @@ docker run -d \
 -v /my/config/directory:/etc/vsftpd \
 -p 20:20 -p 21:21 -p 8600-8700:8600-8700 \
 -e PASV_ADDRESS=127.0.0.1 -e PASV_MIN_PORT=8600 -e PASV_MAX_PORT=8700 \
---name vsftpd --restart=always fauria/vsftpd
+--name vsftpd --restart=always trackhe/docker-vsftpd
 ```
 
 4) Manually add a new FTP user to an existing container:
