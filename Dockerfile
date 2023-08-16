@@ -14,7 +14,8 @@ RUN apk upgrade
 RUN apk --update --no-cache add \
 		bash \
 		openssl \
-		vsftpd
+		vsftpd \
+		openrc
 
 RUN apk add db-utils
 
