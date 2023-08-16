@@ -1,44 +1,23 @@
-# fauria/vsftpd
+# trackhe/docker-vsftpd
 
-![docker_logo](https://raw.githubusercontent.com/fauria/docker-vsftpd/master/docker_139x115.png)![docker_fauria_logo](https://raw.githubusercontent.com/fauria/docker-vsftpd/master/docker_fauria_161x115.png)
-
-[![Docker Pulls](https://img.shields.io/docker/pulls/fauria/vsftpd.svg?style=plastic)](https://hub.docker.com/r/fauria/vsftpd/)
-[![Docker Build Status](https://img.shields.io/docker/build/fauria/vsftpd.svg?style=plastic)](https://hub.docker.com/r/fauria/vsftpd/builds/)
-[![](https://images.microbadger.com/badges/image/fauria/vsftpd.svg)](https://microbadger.com/images/fauria/vsftpd "fauria/vsftpd")
 
 This Docker container implements a vsftpd server, with the following features:
 
- * Centos 7 base image.
- * vsftpd 3.0
+ * Alpine base image.
+ * vsftpd
  * Virtual users
  * Passive mode
  * Logging to a file or `STDOUT`.
 
-### Installation from [Docker registry hub](https://registry.hub.docker.com/r/fauria/vsftpd/).
+### Installation from [Docker registry hub](https://registry.hub.docker.com/r/trackhe/docker-vsftpd/).
 
 You can download the image with the following command:
 
 ```bash
-docker pull fauria/vsftpd
+docker pull trackhe/docker-vsftpd
 ```
 
 Environment variables
-----
-
-This image uses environment variables to allow the configuration of some parameters at run time:
-
-* Variable name: `FTP_USER`
-* Default value: admin
-* Accepted values: Any string. Avoid whitespaces and special chars.
-* Description: Username for the default FTP account. If you don't specify it through the `FTP_USER` environment variable at run time, `admin` will be used by default.
-
-----
-
-* Variable name: `FTP_PASS`
-* Default value: Random string.
-* Accepted values: Any string.
-* Description: If you don't specify a password for the default FTP account through `FTP_PASS`, a 16 character random string will be automatically generated. You can obtain this value through the [container logs](https://docs.docker.com/engine/reference/commandline/container_logs/).
-
 ----
 
 * Variable name: `PASV_ADDRESS`
@@ -137,24 +116,25 @@ Use cases
 1) Create a temporary container for testing purposes:
 
 ```bash
-  docker run --rm fauria/vsftpd
+  docker run --rm trackhe/docker-vsftpd
 ```
 
 2) Create a container in active mode using the default user account, with a binded data directory:
 
 ```bash
-docker run -d -p 21:21 -v /my/data/directory:/home/vsftpd --name vsftpd fauria/vsftpd
+docker run -d -p 21:21 -v /my/data/directory:/home/vsftpd -v /my/config/directory:/etc/vsftpd --name vsftpd trackhe/docker-vsftpd
 # see logs for credentials:
 docker logs vsftpd
 ```
 
-3) Create a **production container** with a custom user account, binding a data directory and enabling both active and passive mode:
+3) Create a **production container**, binding a data and config directory and enabling both active and passive mode:
 
 ```bash
-docker run -d -v /my/data/directory:/home/vsftpd \
--p 20:20 -p 21:21 -p 21100-21110:21100-21110 \
--e FTP_USER=myuser -e FTP_PASS=mypass \
--e PASV_ADDRESS=127.0.0.1 -e PASV_MIN_PORT=21100 -e PASV_MAX_PORT=21110 \
+docker run -d \
+-v /my/data/directory:/home/vsftpd \
+-v /my/config/directory:/etc/vsftpd \
+-p 20:20 -p 21:21 -p 8600-8700:8600-8700 \
+-e PASV_ADDRESS=127.0.0.1 -e PASV_MIN_PORT=8600 -e PASV_MAX_PORT=8700 \
 --name vsftpd --restart=always fauria/vsftpd
 ```
 
