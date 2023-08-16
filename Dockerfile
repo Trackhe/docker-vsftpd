@@ -40,6 +40,7 @@ RUN mkdir -p /home/vsftpd/
 RUN chown -R ftp:ftp /home/vsftpd/
 
 VOLUME /home/vsftpd
+VOLUME /etc/vsftpd
 VOLUME /var/log/vsftpd
 
 EXPOSE 20 21
