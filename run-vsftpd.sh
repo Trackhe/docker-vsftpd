@@ -16,7 +16,7 @@ if [ -e "/etc/vsftpd/virtual_users" ]; then
     echo "No User exist!"
 else
     touch /etc/vsftpd/virtual_users
-fiecho "${FTP_USER}:$(openssl passwd -1 ${FTP_PASS})" >> /etc/vsftpd/virtual_users
+fi
 
 chmod 600 /etc/vsftpd/virtual_users
 
