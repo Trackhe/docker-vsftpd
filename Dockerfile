@@ -26,12 +26,12 @@ ENV PASV_MAX_PORT 8700
 ENV LOG_STDOUT NO
 ENV LOCAL_UMASK 077
 
-RUN mkdir /pam
+#RUN mkdir /pam
 
 COPY vsftpd.conf /etc/vsftpd/
 COPY vsftpd_virtual /etc/pam.d/
 COPY run-vsftpd.sh /usr/sbin/
-COPY libpam-pwdfile-1.0.tar.gz /pam
+#COPY libpam-pwdfile-1.0.tar.gz /pam
 
 RUN \
   cd /pam && \
