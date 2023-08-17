@@ -13,6 +13,7 @@ else
 fi
 
 if [ -e "/etc/vsftpd/virtual_users" ]; then
+    echo "User File Exist"
 else
     touch /etc/vsftpd/virtual_users
 fi
