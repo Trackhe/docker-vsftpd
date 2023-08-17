@@ -31,13 +31,14 @@ RUN mkdir /pam
 COPY vsftpd.conf /etc/vsftpd/
 COPY vsftpd_virtual /etc/pam.d/
 COPY run-vsftpd.sh /usr/sbin/
-COPY libpam-pwdfile-1.0.tar.gz /pam/
+COPY libpam-pwdfile-1.0.tar.gz /pam
 
 RUN \
   cd /pam && \
-  tar xzf libpam-pwdfile-1.0.tar.gz --strip 1 && \
+  curl -sSL https://github.com/prapdm/libpam-pwdfile/archive/v1.0.tar.gz | tar xz --strip 1 && \
   make install && \
   cd .. && \
+  rm -rvf pam && \
   mkdir -p /home/www-data && \
   adduser -S -D -G www-data -h /home/www-data -s /sbin/nologin www-data && \
   chown -R www-data:www-data /home/www-data && \
