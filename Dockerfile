@@ -15,7 +15,7 @@ RUN apk --update --no-cache add \
 		bash \
 		openssl \
 		vsftpd \
-		openrc 
+		openrc \
 		linux-pam-dev
 
 RUN apk --update --no-cache --virtual add .build-dependencies build-base linux-pam-dev curl tar
