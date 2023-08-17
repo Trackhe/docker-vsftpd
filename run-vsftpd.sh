@@ -7,11 +7,12 @@ else
 fi
 
 if [ -e "/etc/vsftpd/virtual_users" ]; then
-    echo "No User exist! try: echo "${FTP_USER}:$(openssl passwd -1 ${FTP_PASS})" >> /etc/vsftpd/virtual_users"
+    echo `No User exist! try: echo "${FTP_USER}:$(openssl passwd -1 ${FTP_PASS})" >> /etc/vsftpd/virtual_users"`
 else
     touch /etc/vsftpd/virtual_users
-    chmod 600 /etc/vsftpd/virtual_users
 fi
+
+chmod 600 /etc/vsftpd/virtual_users
 
 # Set passive mode parameters:
 if [ "$PASV_ADDRESS" = "**IPv4**" ]; then
