@@ -26,8 +26,6 @@ FTP_CONFIG=(
     ["local_umask"]="${LOCAL_UMASK}"
 )
 
-chmod 600 /conf/vsftpd/virtual_users
-
 for key in "${!FTP_CONFIG[@]}"; do
     value="${FTP_CONFIG[$key]}"
     if grep -q "^${key}=" "$CONF_FILE"; then
