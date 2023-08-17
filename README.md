@@ -142,8 +142,7 @@ docker run -d \
 ```bash
 docker exec -i -t vsftpd bash
 mkdir /home/vsftpd/myuser
-echo -e "myuser\nmypass" >> /etc/vsftpd/virtual_users.txt
-/usr/bin/db_load -T -t hash -f /etc/vsftpd/virtual_users.txt /etc/vsftpd/virtual_users.db
+echo "${FTP_USER}:$(openssl passwd -1 ${FTP_PASS})" >> /etc/vsftpd/virtual_users
 exit
 docker restart vsftpd
 ```

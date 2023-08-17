@@ -4,13 +4,19 @@ if [ -e "1" ]; then
     echo "File Found"
 else
 	touch "/etc/vsftpd/1"
+    if [[ ! -e /etc/vsftpd/vsftpd.pem ]]; then
+	echo "Creating the certificate"
+	openssl req -x509 -nodes -days 3650 -newkey rsa:4096 \
+		-keyout /etc/vsftpd/vsftpd.pem -out /etc/vsftpd/vsftpd.pem \
+		-batch || { echo "Failed to create the vsftpd certificate"; exit 1; }
+    fi
 fi
 
 if [ -e "/etc/vsftpd/virtual_users" ]; then
-    echo `No User exist! try: echo "${FTP_USER}:$(openssl passwd -1 ${FTP_PASS})" >> /etc/vsftpd/virtual_users"`
+    echo "No User exist!"
 else
     touch /etc/vsftpd/virtual_users
-fi
+fiecho "${FTP_USER}:$(openssl passwd -1 ${FTP_PASS})" >> /etc/vsftpd/virtual_users
 
 chmod 600 /etc/vsftpd/virtual_users
 
