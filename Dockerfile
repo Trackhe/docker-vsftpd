@@ -35,7 +35,7 @@ COPY libpam-pwdfile-1.0.tar.gz /pam/
 
 RUN \
   cd /pam && \
-  tar xz --strip 1 libpam-pwdfile-1.0.tar.gz && \
+  tar xzf libpam-pwdfile-1.0.tar.gz --strip 1 && \
   make install && \
   cd .. && \
   rm -rvf pam && \
