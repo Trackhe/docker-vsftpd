@@ -1,15 +1,5 @@
 #!/bin/bash
 
-# Do not log to STDOUT by default:
-if [ "$LOG_STDOUT" = "**Boolean**" ]; then
-    export LOG_STDOUT=''
-else
-    export LOG_STDOUT='Yes.'
-fi
-
-# Create home dir and update vsftpd user db:
-chown -R ftp:ftp /home/vsftpd/
-
 if [ -e "1" ]; then
     echo "File Found"
 else
@@ -33,13 +23,10 @@ FTP_CONFIG=(
     ["pasv_max_port"]="${PASV_MAX_PORT}"
     ["pasv_min_port"]="${PASV_MIN_PORT}"
     ["pasv_addr_resolve"]="${PASV_ADDR_RESOLVE}"
-    ["pasv_enable"]="${PASV_ENABLE}"
-    ["file_open_mode"]="${FILE_OPEN_MODE}"
     ["local_umask"]="${LOCAL_UMASK}"
-    ["xferlog_std_format"]="${XFERLOG_STD_FORMAT}"
-    ["pasv_promiscuous"]="${PASV_PROMISCUOUS}"
-    ["port_promiscuous"]="${PORT_PROMISCUOUS}"
 )
+
+chmod 600 /conf/vsftpd/virtual_users
 
 for key in "${!FTP_CONFIG[@]}"; do
     value="${FTP_CONFIG[$key]}"
