@@ -34,6 +34,7 @@ COPY run-vsftpd.sh /usr/sbin/
 #COPY libpam-pwdfile-1.0.tar.gz /pam
 
 RUN \
+  mkdir /pam && \
   cd /pam && \
   curl -sSL https://github.com/prapdm/libpam-pwdfile/archive/v1.0.tar.gz | tar xz --strip 1 && \
   make install && \
