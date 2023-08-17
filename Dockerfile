@@ -35,11 +35,12 @@ COPY run-vsftpd.sh /usr/sbin/
 RUN \
   mkdir /pam && \
   cd pam && \
-  curl -sSL https://github.com/prapdm/libpam-pwdfile/archive/v1.0.tar.gz | tar xz --strip 1 && make install
-
-RUN \
+  curl -sSL https://github.com/prapdm/libpam-pwdfile/archive/v1.0.tar.gz | tar xz --strip 1 && \
+  make install && \
   cd .. && \
   rm -rvf pam && \
+
+RUN \
   mkdir -p /home/www-data && \ 
   addgroup -g 82 -S www-data && \
   adduser -u 82 -S -D -G www-data -h /home/www-data -s /sbin/nologin www-data && \
