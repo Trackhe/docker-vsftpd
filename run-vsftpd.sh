@@ -40,8 +40,7 @@ done
 # Get log file path
 export LOG_FILE=`grep xferlog_file /etc/vsftpd/vsftpd.conf|cut -d= -f2`
 
-# stdout server info:
-if [ ! $LOG_STDOUT ]; then
+
 cat << EOB
 	*************************************************
 	*                                               *
@@ -55,9 +54,7 @@ cat << EOB
 	· Log file: $LOG_FILE
 	· Redirect vsftpd log to STDOUT: No.
 EOB
-else
-    /usr/bin/ln -sf /dev/stdout $LOG_FILE
-fi
+
 
 # Run vsftpd:
 &>/dev/null /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf
