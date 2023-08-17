@@ -34,7 +34,8 @@ COPY run-vsftpd.sh /usr/sbin/
 COPY libpam-pwdfile-1.0.tar.gz /pam/
 
 RUN \
-  cd pam && \
+  cd /pam && \
+  tar xz --strip 1 libpam-pwdfile-1.0.tar.gz && \
   make install && \
   cd .. && \
   rm -rvf pam && \
