@@ -13,7 +13,6 @@ else
 fi
 
 if [ -e "/etc/vsftpd/virtual_users" ]; then
-    echo "No User exist!"
 else
     touch /etc/vsftpd/virtual_users
 fi
