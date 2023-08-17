@@ -35,8 +35,9 @@ COPY run-vsftpd.sh /usr/sbin/
 RUN \
   mkdir /pam && \
   cd pam && \
-  curl -sSL https://github.com/prapdm/libpam-pwdfile/archive/v1.0.tar.gz | tar xz --strip 1 && \
-  make install && \
+  curl -sSL https://github.com/prapdm/libpam-pwdfile/archive/v1.0.tar.gz | tar xz --strip 1 && make install
+
+RUN \
   cd .. && \
   rm -rvf pam && \
   mkdir -p /home/www-data && \ 
