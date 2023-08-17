@@ -42,6 +42,7 @@ RUN \
   mkdir -p /home/www-data
 
 RUN \
+  adduser -S -D -G www-data -h /home/www-data -s /sbin/nologin www-data && \
   chown -R www-data:www-data /home/www-data && \
   mkdir -p /var/run/vsftpd/empty && \
   mkdir -p /home/vsftpd && \
