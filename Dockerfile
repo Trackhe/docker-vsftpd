@@ -1,9 +1,6 @@
 FROM alpine:latest
 
-ARG USER_ID=14
-ARG GROUP_ID=50
-
-MAINTAINER Fer Uria <fauria@gmail.com>
+MAINTAINER Trackhe <michael@trackhe.de>
 LABEL Description="vsftpd Docker image based on Alpine." \
 	License="Apache License 2.0" \
 	Usage="docker run -d -p [HOST PORT NUMBER]:21 -v [HOST FTP HOME]:/home/vsftpd trackhe/docker-vsftpd:latest" \
@@ -40,15 +37,12 @@ RUN \
   make install && \
   cd .. && \
   rm -rvf pam && \
-  mkdir -p /home/www-data
-
-RUN \
+  mkdir -p /home/www-data && \
   adduser -S -D -G www-data -h /home/www-data -s /sbin/nologin www-data && \
   chown -R www-data:www-data /home/www-data && \
   mkdir -p /var/run/vsftpd/empty && \
   mkdir -p /home/vsftpd && \
-  mkdir -p /conf/vsftpd && \
-  mkdir -p /conf/vsftpd/users_config && \
+  mkdir -p /etc/vsftpd/users_config && \
   chown -R ftp:ftp /home/vsftpd && \
   echo "Delete Build pkgs" && \
   apk del .build-dependencies && \
