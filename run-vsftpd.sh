@@ -4,6 +4,7 @@ if [ -e "1" ]; then
     echo "File Found"
 else
 	touch "/etc/vsftpd/1"
+    cp /tmp/vsftpd.conf /etc/vsftpd/
 #    if [[ ! -e /etc/vsftpd/vsftpd.pem ]]; then
 #	echo "Creating the certificate"
 #	openssl req -x509 -nodes -days 3650 -newkey rsa:4096 \
