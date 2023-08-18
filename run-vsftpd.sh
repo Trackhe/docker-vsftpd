@@ -65,4 +65,4 @@ cat << EOB
 EOB
 
 # Run vsftpd:
-CMD ["systemctl start vsftpd"]
+systemctl start vsftpd
