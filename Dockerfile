@@ -6,7 +6,7 @@ LABEL Description="vsftpd Docker image based on Ubuntu." \
 	Version="1.0"
 
 RUN apt update && apt upgrade -y
-RUN apt install -y bash openssl vsftpd curl libpam-pwdfile
+RUN apt install -y bash openssl vsftpd db-util
 
 ENV PASV_ADDRESS **IPv4**
 ENV PASV_ADDR_RESOLVE NO

@@ -65,4 +65,4 @@ cat << EOB
 EOB
 
 # Run vsftpd:
-systemctl start vsftpd
+vsftpd /etc/vsftpd/vsftpd.conf
