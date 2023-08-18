@@ -1,15 +1,15 @@
 #!/bin/bash
 
-if [ -e "1" ]; then
+if [ -e "/etc/vsftpd/1" ]; then
     echo "File Found"
 else
 	touch "/etc/vsftpd/1"
-    cp /tmp/vsftpd.conf /etc/vsftpd/
+#    cp /tmp/vsftpd.conf /etc/vsftpd/
 #    if [[ ! -e /etc/vsftpd/vsftpd.pem ]]; then
 #	echo "Creating the certificate"
-#	openssl req -x509 -nodes -days 3650 -newkey rsa:4096 \
-#		-keyout /etc/vsftpd/vsftpd.pem -out /etc/vsftpd/vsftpd.pem \
-#		-batch || { echo "Failed to create the vsftpd certificate"; exit 1; }
+	openssl req -x509 -nodes -days 3650 -newkey rsa:4096 \
+		-keyout /etc/vsftpd/vsftpd-key.pem -out /etc/vsftpd/vsftpd.pem \
+		-batch || { echo "Failed to create the vsftpd certificate"; exit 1; }
 #    fi
 fi
 

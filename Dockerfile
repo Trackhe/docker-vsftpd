@@ -1,23 +1,20 @@
-FROM alpine:latest
+FROM ubuntu:latest
 
 MAINTAINER Trackhe <michael@trackhe.de>
-LABEL Description="vsftpd Docker image based on Alpine." \
+LABEL Description="vsftpd Docker image based on Ubuntu." \
 	License="Apache License 2.0" \
 	Usage="docker run -d -p [HOST PORT NUMBER]:21 -v [HOST FTP HOME]:/home/vsftpd trackhe/docker-vsftpd:latest" \
 	Version="1.0"
 
-RUN apk update
-RUN apk upgrade
-RUN apk --update --no-cache add \
+RUN apt update
+RUN apt upgrade
+RUN apt install \
 		bash \
 		openssl \
 		vsftpd \
-		openrc \
 		linux-pam-dev
 
-RUN apk --update add --no-cache --virtual .build-dependencies build-base linux-pam-dev curl tar
-
-RUN apk add db-utils
+RUN apt install libpam-pwdfile db-utils
 
 ENV PASV_ADDRESS **IPv4**
 ENV PASV_ADDR_RESOLVE NO
@@ -44,7 +41,7 @@ RUN \
   mkdir -p /var/run/vsftpd/empty && \
   mkdir -p /home/vsftpd && \
   mkdir -p /etc/vsftpd/users_config && \
-  chown -R ftp:ftp /home/vsftpd && \
+  chown -R www-data:www-data /home/vsftpd && \
   echo "Delete Build pkgs" && \
   apk del .build-dependencies && \
   rm -rvf /var/cache/apk/* && \
