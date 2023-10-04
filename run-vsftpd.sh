@@ -17,6 +17,7 @@ if [ -e "/etc/vsftpd/virtual_users" ]; then
     echo "User File Exist"
 else
     touch /etc/vsftpd/virtual_users
+    /usr/bin/db_load -T -t hash -f /etc/vsftpd/virtual_users.txt /etc/vsftpd/virtual_users.db
 fi
 
 chmod 600 /etc/vsftpd/virtual_users
