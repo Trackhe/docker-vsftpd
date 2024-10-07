@@ -58,11 +58,6 @@ cat << EOB
 	*    https://github.com/Trackhe/docker-vsftpd    *
 	*                                               *
 	*************************************************
-
-	SERVER SETTINGS
-	---------------
-	· Log file: $LOG_FILE
-	· Redirect vsftpd log to STDOUT: No.
 EOB
 
 # Run vsftpd:
